@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './lib/index.ts',
   mode: 'production',
   module: {
     rules: [
@@ -21,6 +21,6 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
-    path: path.resolve(`${__dirname}/src`, 'dist')
+    path: path.resolve(`${__dirname}/lib`, 'dist')
   }
 };

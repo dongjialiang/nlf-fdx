@@ -1,6 +1,8 @@
-import { h } from './h';
-import { createElement } from './VNode';
-var a = h('ul', { class: 'list' }, [{
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const h_1 = require("./h");
+const VNode_1 = require("./VNode");
+const a = h_1.h('ul', { class: 'list' }, [{
         tag: 'li',
         props: {},
         children: 'item-1',
@@ -17,10 +19,10 @@ var a = h('ul', { class: 'list' }, [{
                 children: 'item-3',
             }],
     }]);
-export var init = function (selector) {
-    var app = document.querySelector(selector);
+exports.init = (selector) => {
+    const app = document.querySelector(selector);
     if (app) {
-        app.appendChild(createElement(a));
+        app.appendChild(VNode_1.createElement(a));
     }
 };
 //# sourceMappingURL=index.js.map

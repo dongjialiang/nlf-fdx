@@ -1,16 +1,13 @@
-interface Props {
-    [key: string]: string | Props | (() => {});
-}
 interface HtmlCache {
     [key: string]: HTMLElement;
 }
 const htmlCache: HtmlCache = {}; // 用于缓存创建的节点
 const memoizehtml = (tag: string) => htmlCache[tag] || (htmlCache[tag] = document.createElement(tag));
 // 设置文本
-const setText = (element: HTMLElement | Node, text: string) => {
+const setText = (element: HTMLElement | Node, text: string | number) => {
     // innerHTML会保留格式, 不用
     // element.textContent = text; // 用于更改内容
-    element.appendChild(document.createTextNode(text));
+    mount(element, document.createTextNode(text.toString()));
 };
 // 把对象拼接成字符串
 const objToString = (obj: any): any => {
@@ -29,7 +26,7 @@ const objToString = (obj: any): any => {
 const setAttr = (
     element: any,
     prop: string,
-    value: void | string | Props | (() => {}),
+    value: void | string | (() => {}),
 ) => {
     if (value === null || value === undefined || value.length === 0) {
         return;
@@ -43,7 +40,7 @@ const parseObject = (
     for (let index = 0, keys = Object.keys(args); index < keys.length; index++) {
         if (args[keys[index]] instanceof Function) {
             setAttr(element, keys[index], `${(args[keys[index]].name)}()`);
-        } else if (args[keys[index]] instanceof Object) {
+        } else if (keys[index] === 'style' && args[keys[index]] instanceof Object) {
             setAttr(element, keys[index], objToString(args[keys[index]]));
         } else {
             setAttr(element, keys[index], args[keys[index]]);
@@ -57,7 +54,7 @@ const parseArray = (
     for (let index = 0, length = args.length; index < length; index++) {
         const argType = typeof args[index];
         const arg = args[index];
-        if (argType === 'string') {
+        if (argType === 'string' || argType === 'number') {
             setText(element, arg);
         } else if (isNode(arg)) {
             mount(element, arg);
@@ -90,7 +87,9 @@ const isNode = (arg: Node): number => arg && arg.nodeType; // 返回节点或者
 const addEvent = (element: Node | HTMLElement, type: string, listener: (() => {})) => {
     element.addEventListener(type, listener);
 };
-const mount = (parent: HTMLElement, child: HTMLElement) => { // 挂载子节点到父节点上
-    parent.appendChild(child);
+let a = 0;
+const mount = (parent: HTMLElement | Node, child: HTMLElement | Text | DocumentFragment) => { // 挂载子节点到父节点上
+    if (parent !== child.parentNode) { // 如果已经挂载就不重复挂载
+        parent.appendChild(child);
+    }
 };
-const $ = (selectors: string) => document.querySelector(selectors); // 查询选择器
