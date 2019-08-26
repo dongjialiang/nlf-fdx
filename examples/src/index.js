@@ -19,12 +19,11 @@ const text = `
     <p>welcome to myhome page.</p>
     <span f-if='{{bool}}'>这是隐藏起来的内容</span>
     <ul>
-        ${data.lists.map(list =>
-            `<li>
-                姓名: <span>${list.username}</span>,
-                年龄: <span>${list.age}</span>,
-                性别: <span>${list.sex}</span>
-            </li>`).join('')}
+        <li f-for='{{let list of lists}}'>
+            姓名: <span>{{list.username}}</span>,
+            年龄: <span>{{list.age}}</span>,
+            性别: <span>{{list.sex}}</span>
+        </li>
     </ul>
 </slot>
 <style>
@@ -33,5 +32,5 @@ const text = `
         width: 1.8rem;
     } 
 </style>
-    `;
+`.trim();
 mount(app.dom, app.tempHTML(text, data));

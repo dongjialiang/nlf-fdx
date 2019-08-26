@@ -9,11 +9,13 @@ class Dom {
         }
     }
     tempHTML(content, data) {
-        const c = content.replace(/({{)(.*?)(}})/g, (s0, s1, s2, s3) => data[s2])
-            .replace(/(f-if=')(.*?)(')/g, (s0, s1, s2, s3) => s2 === 'false' ? 'style="display: none"' : '');
-        const range = document.createRange();
-        const node = range.createContextualFragment(c);
-        return node;
+        const c = content
+            .replace(/({{)(.*?)(}})/g, (match, s1, s2, s3) => data[s2])
+            .replace(/(f-if=')(.*?)(')/g, (match, s1, s2, s3) => s2 === 'false' ? 'style="display: none"' : '');
+        console.log(c);
+        const div = document.createElement('div');
+        div.insertAdjacentHTML('afterbegin', c);
+        return div.firstElementChild;
     }
 }
 const $ = (selectors) => document.querySelector(selectors);
