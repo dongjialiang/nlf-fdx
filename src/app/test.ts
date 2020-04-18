@@ -87,7 +87,6 @@ const isNode = (arg: Node): number => arg && arg.nodeType; // 返回节点或者
 const addEvent = (element: Node | HTMLElement, type: string, listener: (() => {})) => {
     element.addEventListener(type, listener);
 };
-let a = 0;
 const mount = (parent: HTMLElement | Node, child: HTMLElement | Text | DocumentFragment) => { // 挂载子节点到父节点上
     if (parent !== child.parentNode) { // 如果已经挂载就不重复挂载
         parent.appendChild(child);

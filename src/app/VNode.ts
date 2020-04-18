@@ -1,7 +1,7 @@
-export interface Props {
+interface Props {
     [key: string]: string;
 }
-export interface VNode {
+interface VNode {
     tag: string;
     props: Props;
     children: string | VNode[];
@@ -28,3 +28,4 @@ export const createElement = (vnode: (string | VNode)) => {
     }
     return element;
 };
+export { Props, VNode }

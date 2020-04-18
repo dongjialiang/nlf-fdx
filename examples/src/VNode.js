@@ -19,4 +19,3 @@ exports.createElement = (vnode) => {
     }
     return element;
 };
-//# sourceMappingURL=VNode.js.map

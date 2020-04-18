@@ -72,10 +72,8 @@ const isNode = (arg) => arg && arg.nodeType;
 const addEvent = (element, type, listener) => {
     element.addEventListener(type, listener);
 };
-let a = 0;
 const mount = (parent, child) => {
     if (parent !== child.parentNode) {
         parent.appendChild(child);
     }
 };
-//# sourceMappingURL=test.js.map

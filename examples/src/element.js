@@ -11,4 +11,3 @@ exports.creatTemplate = (tagName) => (strings, ...args) => ({
     tag: tagName,
     template: strings.reduce((acc, currentString, index) => acc + currentString + (args[index] || ''), ''),
 });
-//# sourceMappingURL=element.js.map

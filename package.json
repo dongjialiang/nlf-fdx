@@ -4,18 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "lint": "npx tslint -c tslint.json 'src/**/*.ts'",
-    "tsc": "tsc -p tsconfig.json",
-    "watch": "tsc -p tsconfig.json -w"
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w",
+    "lint": "eslint src/**/*"
   },
-  "dependencies": {
-    "tslint": "^5.14.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.4.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "@typescript-eslint/eslint-plugin": "^2.28.0",
+    "@typescript-eslint/parser": "^2.28.0",
+    "eslint": "^6.8.0",
+    "typescript": "^3.4.1"
   }
 }

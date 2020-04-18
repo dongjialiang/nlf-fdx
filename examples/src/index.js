@@ -1,36 +1,27 @@
-const app = new Dom('#app');
-data = {
-    name: 'user',
-    num: 3,
-    bool: false,
-    lists: [
-        {username: 'ljd', age: 27, sex: '男'},
-        {username: 'ww', age: 19, sex: '女'},
-        {username: 'll', age: 19, sex: '女'},
-        {username: 'mm', age: 19, sex: '女'},
-        {username: 'hh', age: 19, sex: '女'},
-        {username: 'ff', age: 19, sex: '女'},
-        {username: 'kk', age: 19, sex: '女'},
-    ],
-}
-const text = `
-<slot>
-    <h1>Hello, {{name}}!!!</h1>
-    <p>welcome to myhome page.</p>
-    <span f-if='{{bool}}'>这是隐藏起来的内容</span>
-    <ul>
-        <li f-for='{{let list of lists}}'>
-            姓名: <span>{{list.username}}</span>,
-            年龄: <span>{{list.age}}</span>,
-            性别: <span>{{list.sex}}</span>
-        </li>
-    </ul>
-</slot>
-<style>
-    span {
-        display: inline-block;
-        width: 1.8rem;
-    } 
-</style>
-`.trim();
-mount(app.dom, app.tempHTML(text, data));
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const h_1 = require("./h");
+const VNode_1 = require("./VNode");
+const a = h_1.h('ul', { class: 'list' }, [{
+        tag: 'li',
+        props: {},
+        children: 'item-1',
+    }, {
+        tag: 'li',
+        props: { class: 'list-item' },
+        children: [{
+                tag: 'span',
+                props: {},
+                children: 'item-2',
+            }, {
+                tag: 'span',
+                props: {},
+                children: 'item-3',
+            }],
+    }]);
+exports.init = (selector) => {
+    const app = document.querySelector(selector);
+    if (app) {
+        app.appendChild(VNode_1.createElement(a));
+    }
+};
